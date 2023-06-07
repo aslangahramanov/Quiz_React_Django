@@ -1,0 +1,11 @@
+
+# Django
+projectenv/
+__pycache__/
+
+
+# Visual Studio Code
+.vscode/
+
+# SQLite
+*.sqlite3

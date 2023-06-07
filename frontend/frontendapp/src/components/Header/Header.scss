@@ -1,0 +1,95 @@
+.Header {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 8px 0;
+    border-bottom: 1px solid #0065a990;
+
+
+    .Container {
+        width: 80%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+
+        .Logo {
+            width: 140px;
+        }
+
+        .Navigation {
+            .NavBar {
+                display: flex;
+                list-style: none;
+
+                .NavItem {
+                    margin: 0 40px;
+                    border-top: 1px solid #0065a97f;
+                    border-bottom: 1px solid #0065a97f;
+                    padding: 10px 25px;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: #0066A9;
+                    transition: 100ms ease-in-out;
+                    cursor: pointer;
+
+
+                    &:hover {
+                        border-top: 1px solid red;
+                        border-bottom: 1px solid red;
+                        color: red;
+
+                    }
+                }
+
+                .activeItem {
+                    margin: 0 40px;
+                    border-top: 1px solid red;
+                    border-bottom: 1px solid red;
+                    padding: 10px 25px;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: red;
+                    transition: 100ms ease-in-out;
+                    cursor: pointer;
+                }
+            }
+        }
+
+
+        .Profile{
+            display: flex;
+            align-items: center;
+            .Username{
+                margin-right: 20px;
+
+                strong{
+                    color: #0066A9;
+                    font-size: 17px;
+                }
+            }
+    
+            .LogoutIcon{
+                cursor: pointer;
+            }
+        }
+
+        .Login {
+            padding: 6px 40px;
+            background-color: #0066A9;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: 100ms;
+
+            &:hover {
+                background-color: red;
+
+            }
+        }
+    }
+}
