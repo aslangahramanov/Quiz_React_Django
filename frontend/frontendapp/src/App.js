@@ -1,4 +1,5 @@
 import './App.css';
+import LoadingPage from './components/LoadingPage/LoadingPage';
 import Entry from './containers/Entry/Entry';
 import QuizStart from './containers/QuizStart/QuizStart';
 import Main from './HOC/Main/Main';
@@ -39,7 +40,6 @@ function App() {
 
   return (
     <div className="App">
-    {/* <Entry></Entry> */}
     {PageJSX}
     </div>
   );

@@ -46,7 +46,7 @@ function Main(props) {
       default:
         return 
     }
-  }, [mainPage])
+  }, [mainPage, selectedQuizId, props.fullName, selectQuizHandler])
 
   return (
     <div>
