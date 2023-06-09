@@ -1,7 +1,5 @@
 import './App.css';
-import LoadingPage from './components/LoadingPage/LoadingPage';
 import Entry from './containers/Entry/Entry';
-import QuizStart from './containers/QuizStart/QuizStart';
 import Main from './HOC/Main/Main';
 import React from 'react';
 
@@ -35,7 +33,7 @@ function App() {
       default:
         return
     }
-  },[page])
+  },[page, fullName])
 
 
   return (

@@ -8,16 +8,16 @@ function Entry(props) {
     const nameRef = React.useRef()
     const emailRef = React.useRef()
 
-    const FormHandler = React.useCallback(() => {
+    const EntryFormHandler = React.useCallback(() => {
         props.setFullName(nameRef.current.value)
         props.setEmail(emailRef.current.value)
-    },[])
+    },[props])
 
     
     const GuestHandler = React.useCallback(() => {
         props.setFullName('Guest')
         props.setPage('main')
-    }, [])
+    }, [props])
 
 
 
@@ -31,10 +31,10 @@ function Entry(props) {
                 <div className='EntryForm min-w-[400px] text-center'>
                     <form action="">
                         <div>
-                        <input className='w-[260px] border border-black/80 outline-none rounded-[10px] p-[10px] mb-5' onChange={FormHandler} ref={nameRef} id='fullname' type="text" placeholder='Enter Your Full Name' />
+                        <input className='w-[260px] border border-black/80 outline-none rounded-[10px] p-[10px] mb-5' onChange={EntryFormHandler} ref={nameRef} id='fullname' type="text" placeholder='Enter Your Full Name' />
                         </div>
                         <div>
-                        <input className='w-[260px] border border-black/80 outline-none rounded-[10px] p-[10px] mb-5' onChange={FormHandler} ref={emailRef} id='email' type="email" placeholder='Enter Your Email' />
+                        <input className='w-[260px] border border-black/80 outline-none rounded-[10px] p-[10px] mb-5' onChange={EntryFormHandler} ref={emailRef} id='email' type="email" placeholder='Enter Your Email' />
                         </div>
                         <div onClick={() => {
                                     if (nameRef.current.value && emailRef.current.value){

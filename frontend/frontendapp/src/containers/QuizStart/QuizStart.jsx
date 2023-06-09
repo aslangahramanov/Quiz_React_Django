@@ -1,8 +1,8 @@
 import React from 'react'
-import './QuizStart.scss'
 import { getQuestions } from '../../api/quizApi';
 import Question from '../../components/Question/Question';
 import LoadingPage from '../../components/LoadingPage/LoadingPage';
+import { red } from '@mui/material/colors';
 
 
 const initialState = []
@@ -11,6 +11,18 @@ const reducer = (state, action) => {
   switch(action.type){
     case 'LOAD_QUESTIONS':
       return action.questions
+    case 'SELECT_OPTION':
+      const NewState = [...state]
+      const NewQuestion = {...NewState.find(question => question.id === action.questionId)}
+      const QuestionIndex = NewState.findIndex(question => question.id === action.questionId)
+      const NewOptions = NewQuestion.options.map(option => ({...option, selected: false}))
+      const OptionIndex = NewOptions.findIndex(option => option.id === action.optionId)
+      const NewOption = {...NewOptions[OptionIndex], selected: true}
+      NewOptions[OptionIndex] = NewOption
+      NewQuestion.options = NewOptions
+      NewState[QuestionIndex] = NewQuestion
+      return NewState
+
     default:
       return state
   }
@@ -18,7 +30,6 @@ const reducer = (state, action) => {
 
 function QuizStart(props) {
 
-  
 
   const [questions, dispatch] = React.useReducer(reducer, initialState)
   const [quizTitle, setQuizTitle] = React.useState('')
@@ -48,7 +59,6 @@ function QuizStart(props) {
     }
   }, [questionTime]);
 
-console.log(questionTime);
 
   
   const PrevHandler = React.useCallback(() => {
@@ -66,6 +76,11 @@ console.log(questionTime);
   
 
 
+  const SelectOption = React.useCallback((question_id, option_id) => {
+    dispatch({type: 'SELECT_OPTION', questionId: question_id, optionId: option_id})
+  }, [])
+
+
 
 
   const pageQuestion = React.useMemo(() => {
@@ -80,6 +95,7 @@ console.log(questionTime);
           fullName={props.fullName}
           onPrevHandler={PrevHandler}
           onNextHandler={NextHandler}
+          onSelectOption={SelectOption}
         />
       );
     } else {
@@ -89,7 +105,7 @@ console.log(questionTime);
         </div>
       );
     }
-  }, [questions, index, questionLength, quizTitle, questionTime, props.fullName, NextHandler, PrevHandler]);
+  }, [questions, index, questionLength, quizTitle, questionTime, props.fullName, NextHandler, PrevHandler, SelectOption]);
 
 
 
