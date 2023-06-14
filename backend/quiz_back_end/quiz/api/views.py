@@ -1,6 +1,6 @@
 from rest_framework import generics
-from quiz.models import Question, Option, Report, Quiz
-from quiz.api.serializers import QuestionSerializer, OptionSerializer, ReportSerializer, QuizSerializer
+from quiz.models import Question, Option, Result, Quiz
+from quiz.api.serializers import QuestionSerializer, OptionSerializer, ResultSerializer, QuizSerializer, QuizSerializer
 
 
 class QuizListCreateAV(generics.ListCreateAPIView):
@@ -34,11 +34,11 @@ class OptionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = OptionSerializer
 
 
-class ReportListCreateAV(generics.ListCreateAPIView):
-    queryset = Report.objects.all()
-    serializer_class = ReportSerializer
+class ResultListCreateAV(generics.ListCreateAPIView):
+    queryset = Result.objects.all()
+    serializer_class = ResultSerializer
     
 
-class ReportDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Report.objects.all()
-    serializer_class = ReportSerializer
+class ResultDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Result.objects.all()
+    serializer_class = ResultSerializer

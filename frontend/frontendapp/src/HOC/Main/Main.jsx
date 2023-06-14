@@ -1,9 +1,10 @@
 import React from 'react'
 import QuizMenu from '../../containers/QuizMenu/QuizMenu'
 import Header from '../../components/Header/Header'
-import EditQuiz from '../../containers/EditQuiz/EditQuiz'
 import Results from '../../containers/Results/Results'
 import QuizStart from '../../containers/QuizStart/QuizStart'
+import EditMenu from '../../containers/EditQuiz/EditMenu/EditMenu'
+import EditQuestion from '../../containers/EditQuiz/EditQuestion/EditQuestion'
 
 function Main(props) {
 
@@ -26,8 +27,13 @@ function Main(props) {
 
     const selectQuizHandler = React.useCallback((id) => {
         setSelectedQuizId(id)
-        setMainPage('startquiz')
-    },[])
+        if(mainPage === 'quizmenu'){
+          setMainPage('startquiz')
+        }
+        else if(mainPage === 'editmenu'){
+          setMainPage('editquestion')
+        }
+    },[mainPage])
     
 
 
@@ -38,9 +44,11 @@ function Main(props) {
       case 'quizmenu':
         return <QuizMenu onSelectQuiz={selectQuizHandler}></QuizMenu>
       case 'startquiz':
-        return <QuizStart selectedQuizId={selectedQuizId} fullName={props.fullName}></QuizStart>
-      case 'edit':
-        return <EditQuiz></EditQuiz>
+        return <QuizStart selectedQuizId={selectedQuizId} fullName={props.fullName} changeMainPage={setMainPage}></QuizStart>
+      case 'editmenu':
+        return <EditMenu onSelectQuiz={selectQuizHandler} selectedQuizId={selectedQuizId}></EditMenu>
+      case 'editquestion':
+        return <EditQuestion></EditQuestion>
       case 'results':
         return <Results></Results>
       default:

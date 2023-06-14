@@ -37,7 +37,7 @@ function Header(props) {
             <div className="Navigation">
                 <ul className='NavBar flex list-none'>
                     <li onClick={() => {props.setMainPage('quizmenu')}} className={NavQuiz}>Quiz</li>
-                    <li onClick={() => {props.setMainPage('edit')}} className={NavEdit}>Edit</li>
+                    <li onClick={() => {props.setMainPage('editmenu')}} className={NavEdit}>Edit</li>
                     <li onClick={() => {props.setMainPage('results')}} className={NavResults}>Results</li>
                 </ul>
             </div>

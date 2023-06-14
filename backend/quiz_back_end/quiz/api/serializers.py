@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from quiz.models import Question, Option, Report, Quiz
+from quiz.models import Question, Option, Result, Quiz
 
 
 
@@ -18,17 +18,21 @@ class QuestionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class QuizSerializer(serializers.ModelSerializer):
+    questions = QuestionSerializer(many=True, read_only=True)
     class Meta:
         model = Quiz
         fields = '__all__'
         
-    questions = QuestionSerializer(many=True, read_only=True)
+    
+# class QuizSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Quiz
+#         fields = '__all__'
         
         
-        
-class ReportSerializer(serializers.ModelSerializer):
+class ResultSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Report
+        model = Result
         fields = '__all__'
         
         

@@ -1,20 +1,21 @@
 import React from 'react'
-import useApi from '../../hooks/useApi'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import AddQuiz from '../../components/AddQuiz/AddQuiz';
-import { postQuiz } from '../../api/quizApi'
+import { getQuiz, postQuiz } from '../../api/quizApi'
 
 
 function QuizMenu(props) {
 
     //Quiz List
 
-    const {quizes, loadQuizes} = useApi()
+    const [quizes, setQuizes] = React.useState([])
     const [openModal, setOpenModal] = React.useState(false)
 
     React.useEffect(() => {
-        loadQuizes()
-        }, [loadQuizes])
+        getQuiz().then(response => {
+            setQuizes(response.data)
+        })
+    }, [])
 
 
     const AddQuizHandler = React.useCallback(() => {
@@ -30,11 +31,14 @@ function QuizMenu(props) {
 
 
    const PostQuiz = React.useCallback(() => {
-    postQuiz(newQuizTitle, newQuizTime)
+    postQuiz(newQuizTitle, newQuizTime).then(response => {
+        setQuizes(prev => [...prev, response.data])
+    })
     AddQuizHandler()
     setNewQuizTitle('')
     setNewQuizTime(0)
-   },[newQuizTitle, newQuizTime, AddQuizHandler])
+   },[newQuizTime, newQuizTitle, AddQuizHandler])
+
 
 
   return (

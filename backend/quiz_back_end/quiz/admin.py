@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Question, Option, Report, Quiz
+from .models import Question, Option, Result, Quiz
 
 # Register your models here.
 
@@ -9,7 +9,7 @@ class OptionInline(admin.TabularInline):
     extra = 1
 
 admin.site.register(Quiz)
-admin.site.register(Report)
+admin.site.register(Result)
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
